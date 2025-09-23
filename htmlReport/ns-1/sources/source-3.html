@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > UserService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.RESTapi.Service</a>
+</div>
+
+<h1>Coverage Summary for Class: UserService (com.example.RESTapi.Service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.2%
+  </span>
+  <span class="absValue">
+    (2/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    15.4%
+  </span>
+  <span class="absValue">
+    (2/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.RESTapi.Service;
+&nbsp;
+&nbsp;import com.example.RESTapi.Entity.User;
+&nbsp;import com.example.RESTapi.Repository.UserRepo;
+&nbsp;import org.bson.types.ObjectId;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+&nbsp;import org.springframework.security.crypto.password.PasswordEncoder;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;import java.lang.reflect.Array;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Component
+<b class="fc">&nbsp;public class UserService {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    public UserRepo userRepo;
+&nbsp;
+<b class="fc">&nbsp;    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();</b>
+&nbsp;
+&nbsp;    public void saveUser(User user){
+<b class="nc">&nbsp;        userRepo.save(user);</b>
+&nbsp;    }
+&nbsp;    public void saveNewUser(User user){
+<b class="nc">&nbsp;        user.setPassword(passwordEncoder.encode(user.getUserName()));</b>
+<b class="nc">&nbsp;        user.setRoles(Arrays.asList(&quot;USER&quot;));</b>
+<b class="nc">&nbsp;        userRepo.save(user);</b>
+&nbsp;    }
+&nbsp;    public void saveNewAdmin(User user){
+<b class="nc">&nbsp;        user.setPassword(passwordEncoder.encode(user.getUserName()));</b>
+<b class="nc">&nbsp;        user.setRoles(Arrays.asList(&quot;USER&quot;,&quot;ADMIN&quot;));</b>
+<b class="nc">&nbsp;        userRepo.save(user);</b>
+&nbsp;    }
+&nbsp;    public List&lt;User&gt; findAll(){
+<b class="nc">&nbsp;        return userRepo.findAll();</b>
+&nbsp;    }
+&nbsp;    public Optional&lt;User&gt; findById(ObjectId id){
+<b class="nc">&nbsp;        return userRepo.findById(id);</b>
+&nbsp;    }
+&nbsp;    public void deleteById(ObjectId id){
+<b class="nc">&nbsp;        userRepo.deleteById(id);</b>
+&nbsp;    }
+&nbsp;    public User findByuserName(String userName){
+<b class="nc">&nbsp;        return userRepo.findByuserName(userName);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-09-07 10:58</div>
+</div>
+</body>
+</html>
